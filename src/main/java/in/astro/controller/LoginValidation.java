@@ -27,16 +27,20 @@ public class LoginValidation extends HttpServlet {
 		IUserDao userservice = UserDaoFactory.getUserDao();
 		User user = userservice.searchUser(request.getParameter("username"), request.getParameter("password"));
 		RequestDispatcher dispatcher = null;
-		if(user.getView().equalsIgnoreCase("student")) {
-			HttpSession session = request.getSession();
-			session.setAttribute("username", user.getName());
-			dispatcher = request.getRequestDispatcher("./index.jsp");
-			dispatcher.forward(request, response);
+		if(user!=null) {
+			if(user.getView().equalsIgnoreCase("student")) {
+				HttpSession session = request.getSession();
+				session.setAttribute("username", user.getName());
+				dispatcher = request.getRequestDispatcher("./index.jsp");
+			}else if(user.getView().equalsIgnoreCase("admin")) {
+	//			todo: create differnt page for unknown user
+				dispatcher = request.getRequestDispatcher("./Admin.jsp");
+			}
 		}else {
-//			todo: create differnt page for unknown user
-			dispatcher = request.getRequestDispatcher("./Admin.jsp");
-			dispatcher.forward(request, response);
+			request.setAttribute("status", "failed");
+			dispatcher = request.getRequestDispatcher("./login.jsp");
 		}
+		dispatcher.forward(request, response);
 		if(user!=null) out.println("<h1 style='color:green;text-align:center;'>"+user+"</h1>");
 	}
 

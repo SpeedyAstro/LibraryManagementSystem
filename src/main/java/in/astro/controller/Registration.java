@@ -1,6 +1,8 @@
 package in.astro.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,10 @@ public class Registration extends HttpServlet {
 		user.setPassword(password);
 		user.setPhoneno(number);
 		user.setView(view);
-		String status = userservice.addStudent(user);
+		String status = userservice.addStudent(user).toLowerCase();
+		request.setAttribute("status", status);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
