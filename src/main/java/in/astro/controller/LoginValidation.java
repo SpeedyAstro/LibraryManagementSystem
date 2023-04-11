@@ -33,8 +33,13 @@ public class LoginValidation extends HttpServlet {
 				session.setAttribute("username", user.getName());
 				dispatcher = request.getRequestDispatcher("./index.jsp");
 			}else if(user.getView().equalsIgnoreCase("admin")) {
+				request.setAttribute("user", user);
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
 	//			todo: create differnt page for unknown user
-				dispatcher = request.getRequestDispatcher("./Admin.jsp");
+				dispatcher = request.getRequestDispatcher("./Admin1.jsp");
+				System.out.println("i m admin");
+				dispatcher.forward(request, response);
 			}
 		}else {
 			request.setAttribute("status", "failed");

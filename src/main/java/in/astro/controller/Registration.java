@@ -38,7 +38,7 @@ public class Registration extends HttpServlet {
 		user.setPassword(password);
 		user.setPhoneno(number);
 		user.setView(view);
-		String status = userservice.addStudent(user).toLowerCase();
+		String status = userservice.addUser(user).toLowerCase();
 		request.setAttribute("status", status);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
 		dispatcher.forward(request, response);

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import in.astro.bean.Book;
 import in.astro.bean.User;
 import in.astro.util.JdbcUtil;
 
@@ -12,9 +13,10 @@ public class UserDaoImpl implements IUserDao {
 	PreparedStatement statement = null;
 	ResultSet resultset = null;
 	User user = null;
+	Book book = null;
 
 	@Override
-	public String addStudent(User user) {
+	public String addUser(User user) {
 		this.user = user;
 		String query = "insert into library(`uid`,`name`,`username`,`password`,`phoneno`,`view`) values(?,?,?,?,?,?)";
 		try {
@@ -66,6 +68,29 @@ public class UserDaoImpl implements IUserDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public String addBook(Book book) {
+		String query = "insert into book(`bid`,`bookname`,`author`,`amount`,`image`) values(?,?,?,?,?)";
+		this.book = book;
+		try {
+			connection = JdbcUtil.getConnection();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setInt(1, book.getSid());
+					statement.setString(2, book.getBookname());
+					statement.setString(3, book.getAuthor());
+					statement.setInt(4, book.getAmount());
+					statement.setBinaryStream(5, book.getImage(), book.getImage().available());
+					int count = statement.executeUpdate();
+					if(count==1) return "success";
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "failure";
 	}
 
 }
