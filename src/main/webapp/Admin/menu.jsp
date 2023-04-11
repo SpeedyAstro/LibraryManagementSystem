@@ -55,7 +55,7 @@ a{
 				
 				<li><a href="addbook.jsp" target="body">ADD BOOK</a></li>
 				<br><br>
-				<li><a href="searchbook.jsp" target="body">SEARCH BOOK</a></li>
+				<li> <a href="searchbook.jsp" target="body">SEARCH BOOK</a></li> 
 				<br><br>
 				<li><a href="updatebook.jsp" target="body">UPDATE BOOK</a></li>
 				<br><br>

@@ -3,6 +3,8 @@ package in.astro.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import in.astro.bean.Book;
 import in.astro.bean.User;
@@ -91,6 +93,37 @@ public class UserDaoImpl implements IUserDao {
 			e.printStackTrace();
 		}
 		return "failure";
+	}
+	public List<Book> fetchbook() {
+//		ResultSet resultset = null;
+		String query = "select bid,bookname,author,amount,image from book";
+//		Book b = new Book();
+		try {
+			connection = JdbcUtil.getConnection();
+			List<Book> books = new ArrayList<Book>();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					 resultset = statement.executeQuery();
+					 while(resultset.next()) {
+						 Book b = new Book();
+						 b.setSid(resultset.getInt(1));
+						 System.out.println(resultset.getInt(1));
+						 b.setBookname(resultset.getString(2));
+						 b.setAuthor(resultset.getString(3));
+						 b.setAmount(resultset.getInt(4));
+						 b.setImagedata(resultset.getBytes("image"));
+						 books.add(b);
+					 }
+					 System.out.println("hello test :"+books==null+"");
+					 return books;
+				}
+					
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 
 }

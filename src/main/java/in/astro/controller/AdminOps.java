@@ -51,5 +51,8 @@ public class AdminOps extends HttpServlet {
 			inputStream.close();
 			
 		}
+		if(request.getPathInfo().equals("/searchbook")) {
+			
+		}
 	}
 }

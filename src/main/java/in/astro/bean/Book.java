@@ -10,7 +10,14 @@ public class Book implements Serializable {
 	private int sid;
 	private int amount;
 	private String Discription;
+	private byte[] imagedata;
 	
+	public byte[] getImagedata() {
+		return imagedata;
+	}
+	public void setImagedata(byte[] imagedata) {
+		this.imagedata = imagedata;
+	}
 	public InputStream getImage() {
 		return image;
 	}
@@ -19,6 +26,11 @@ public class Book implements Serializable {
 	}
 	public String getBookname() {
 		return bookname;
+	}
+	@Override
+	public String toString() {
+		return "Book [image=" + image + ", bookname=" + bookname + ", author=" + author + ", sid=" + sid + ", amount="
+				+ amount + "]";
 	}
 	public void setBookname(String bookname) {
 		this.bookname = bookname;
