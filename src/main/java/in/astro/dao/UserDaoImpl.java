@@ -125,6 +125,34 @@ public class UserDaoImpl implements IUserDao {
 		return null;
 		
 	}
+	public List<Book> fetchbook(String name){
+		String query = "select bid,bookname,author,amount,image from book where bookname=? or author=?"; 
+		try {
+			connection = JdbcUtil.getConnection();
+			List<Book> books = new ArrayList<Book>();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setString(1, name);
+					statement.setString(2, name);
+					resultset = statement.executeQuery();
+					while(resultset.next()) {
+						Book b = new Book();
+						b.setSid(resultset.getInt(1));
+						 System.out.println(resultset.getInt(1));
+						 b.setBookname(resultset.getString(2));
+						 b.setAuthor(resultset.getString(3));
+						 b.setAmount(resultset.getInt(4));
+						 b.setImagedata(resultset.getBytes("image"));
+						 books.add(b);
+					}
+					return books;
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
 

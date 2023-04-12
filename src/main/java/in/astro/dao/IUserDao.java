@@ -10,4 +10,5 @@ public interface IUserDao {
 	public User searchUser(String username,String password);
 	public String addBook(Book book);
 	public List<Book> fetchbook() ;
+	public List<Book> fetchbook(String name);
 }

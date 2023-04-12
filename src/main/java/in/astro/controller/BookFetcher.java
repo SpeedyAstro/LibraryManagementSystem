@@ -28,20 +28,20 @@ public class BookFetcher extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		out.println("<h1>WORKING ... </h1>");
-		IUserDao userDao = UserDaoFactory.getUserDao();
-		List<Book> books = userDao.fetchbook();
-		System.out.println(books);
-		ServletContext context = request.getServletContext();
-		 Book book = books.get(0);
-		Book book1 = books.get(1);
+//		if(request.getRequestURI().endsWith("all")) 
+				IUserDao userDao = UserDaoFactory.getUserDao();
+				List<Book> books = userDao.fetchbook();
+				System.out.println(books);
+				ServletContext context = request.getServletContext();
+				 Book book = books.get(0);
+				Book book1 = books.get(1);
 
-//		context.setAttribute("books", books);
-		System.out.println(book.getBookname());
-		System.out.println(book1.getBookname());
-		request.setAttribute("books", books);
-//		HttpSession session = request.getSession();
-//		session.setAttribute("books", books);
+//				context.setAttribute("books", books);
+				System.out.println(book.getBookname());
+				System.out.println(book1.getBookname());
+				request.setAttribute("books", books);
+//				HttpSession session = request.getSession();
+//				session.setAttribute("books", books);
 		
 	}
 
