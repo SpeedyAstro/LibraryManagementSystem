@@ -59,18 +59,24 @@
 	 		<th style="width:30%">Image</th>
 	 		<th>Edit</th>
  		</tr>
+ 		 <form action="" method="post">
  		 <% 
             List<Book> books = (List<Book>) request.getAttribute("books");
             for (Book book : books) { %>
             <tr>
             	<td><%=book.getSid() %></td>
+            	<%-- <input type="hidden" name="id" value="<%=book.getSid() %>" /> --%>
             	<td><%=book.getBookname() %></td>
+            	<%-- <input type="hidden" name="bookname" value="<%=book.getBookname() %>" /> --%>
             	<td><%=book.getAuthor() %></td>
+            	<%-- <input type="hidden" name="author" value="<%=book.getAuthor() %>" /> --%>
             	<td><%=book.getAmount() %></td>
-							<% byte[] imageBytes = book.getImagedata();
+            	<%-- <input type="hidden" name="amount" value="<%=book.getAmount() %>" /> --%>            	
+				<% byte[] imageBytes = book.getImagedata();
             	String imageData = new String(Base64.getEncoder().encode(imageBytes)); %>
             	<td><img src="data:image/png;base64,<%= imageData %>"style="max-width: 200px; max-height: 250px;"></td>
-            	<td><a href="/searchResults.jsp">EDIT</a>
+            	<%-- <input type="hidden" name="image" value="<%=book.setImagedata(imageBytes) %>" /> --%>
+            	<td><a href="../Admin11/updatebook?book=<%=book.getBookname()%>">Edit</a></td>
             	</tr>
             	<%} %>
  	</table>

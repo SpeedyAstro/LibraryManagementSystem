@@ -19,6 +19,7 @@
 			width: 30em;
 			animation: keyframes 5s steps(500) infinite; 
 		}
+		
 
 		@keyframes keyframes{ 
 		

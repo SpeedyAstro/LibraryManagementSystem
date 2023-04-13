@@ -11,4 +11,6 @@ public interface IUserDao {
 	public String addBook(Book book);
 	public List<Book> fetchbook() ;
 	public List<Book> fetchbook(String name);
+	public Book getbook(String name);
+	public String updatebook(Book book);
 }

@@ -153,7 +153,53 @@ public class UserDaoImpl implements IUserDao {
 		}
 		return null;
 	}
-
+	
+	public Book getbook(String name){
+		String query = "select bid,bookname,author,amount,image from book where bookname=?"; 
+		Book b = new Book();
+		try {
+			connection = JdbcUtil.getConnection();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setString(1, name);
+					resultset = statement.executeQuery();
+					if(resultset.next()) {
+						b.setSid(resultset.getInt(1));
+						 System.out.println(resultset.getInt(1));
+						 b.setBookname(resultset.getString(2));
+						 b.setAuthor(resultset.getString(3));
+						 b.setAmount(resultset.getInt(4));
+						 b.setImagedata(resultset.getBytes("image"));
+					}
+					return b;
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public String updatebook(Book editbook) {
+		String query = "update book set bookname=?,author=?,amount=?,image=? where bid=?";
+		try {
+			connection = JdbcUtil.getConnection();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setString(1, editbook.getBookname());
+					statement.setString(2, editbook.getAuthor());
+					statement.setInt(3, editbook.getAmount());
+					if(editbook.getImage()!=null) System.out.println("book image is not null in dao layer");
+					statement.setBinaryStream(4, editbook.getImage(), editbook.getImage().available());
+					statement.setInt(5, editbook.getSid());
+					int count = statement.executeUpdate();
+					if(count==1) return "success";
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "failure";
+	}
 }
 
 
