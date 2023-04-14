@@ -30,8 +30,8 @@ public class LoginValidation extends HttpServlet {
 		if(user!=null) {
 			if(user.getView().equalsIgnoreCase("student")) {
 				HttpSession session = request.getSession();
-				session.setAttribute("username", user.getName());
-				dispatcher = request.getRequestDispatcher("./index.jsp");
+				session.setAttribute("user", user);
+				dispatcher = request.getRequestDispatcher("./student.jsp");
 			}else if(user.getView().equalsIgnoreCase("admin")) {
 				request.setAttribute("user", user);
 				HttpSession session = request.getSession();

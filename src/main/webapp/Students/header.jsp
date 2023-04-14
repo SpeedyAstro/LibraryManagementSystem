@@ -14,11 +14,12 @@
   			font-family:Gloria Hallelujah,cursive;
 			font-weight:lighter;
 			font-size: 1em;
-			white-space: nowrap;/*Evitar saltos de línea*/
+			white-space: nowrap;
 			overflow: hidden;
 			width: 30em;
 			animation: keyframes 5s steps(500) infinite; 
 		}
+		
 
 		@keyframes keyframes{ 
 		
@@ -33,7 +34,7 @@
 	<center>
 		<font color="black" size='6'>
 			<b>
-				<h1>Welcome ${requestScope.user.getName() }</h1>
+				<h1>Welcome ${user.getName() }</h1>
 			</b>
 		</font>
 	</center>

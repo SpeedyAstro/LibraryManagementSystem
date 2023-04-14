@@ -101,5 +101,13 @@ public class AdminOps extends HttpServlet {
 			else out.println("<h1 style='color:red; text-align:center;'>Failed</h1>");
 			stream.close();
 		}
+		if(request.getPathInfo().equals("/deletebook")) {
+			String bookname = request.getParameter("name");
+			IUserDao userdao = UserDaoFactory.getUserDao();
+			PrintWriter out = response.getWriter();
+			String status = userdao.deletebook(bookname);
+			if(status.equals("success")) out.println("<h1 style='color:green; text-align:center;'>Deleted Successfull</h1>");
+			else out.println("<h1 style='color:red; text-align:center;'>Failed</h1>");
+		}
 	}
 }

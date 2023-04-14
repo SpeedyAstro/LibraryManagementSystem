@@ -31,14 +31,14 @@ public class BookFetcher extends HttpServlet {
 //		if(request.getRequestURI().endsWith("all")) 
 				IUserDao userDao = UserDaoFactory.getUserDao();
 				List<Book> books = userDao.fetchbook();
-				System.out.println(books);
+//				System.out.println(books);
 				ServletContext context = request.getServletContext();
 				 Book book = books.get(0);
 				Book book1 = books.get(1);
 
 //				context.setAttribute("books", books);
-				System.out.println(book.getBookname());
-				System.out.println(book1.getBookname());
+//				System.out.println(book.getBookname());
+//				System.out.println(book1.getBookname());
 				request.setAttribute("books", books);
 //				HttpSession session = request.getSession();
 //				session.setAttribute("books", books);

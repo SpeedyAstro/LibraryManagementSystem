@@ -3,15 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Output</title>
+<title>bahari</title>
 </head>
-<frameset rows="20%,80%" frameBorder="0">
-    <frame src="Admin/header.jsp"/>
+<frameset rows="20%,65%,15%" frameBorder="0">
+    <frame src="/Admin/header.jsp"/>
 	<frameset cols="20%,80%">
-		<frame src="Admin/menu.jsp"/>
-		<frame src="Admin/welcome.jsp" name="body"/>
+		<frame src="menu.jsp"/>
+		<frame src="welcome.jsp" name="body"/>
 	</frameset>
-	<!-- <frame src="Admin/footer.jsp"/> -->
+	<frame src="footer.jsp"/>
 </frameset>
 </html>
 

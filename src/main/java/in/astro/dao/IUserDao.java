@@ -3,6 +3,7 @@ package in.astro.dao;
 import java.util.List;
 
 import in.astro.bean.Book;
+import in.astro.bean.IssuedBook;
 import in.astro.bean.User;
 
 public interface IUserDao {
@@ -13,4 +14,8 @@ public interface IUserDao {
 	public List<Book> fetchbook(String name);
 	public Book getbook(String name);
 	public String updatebook(Book book);
+	public String deletebook(String name);
+	public boolean issueBook(String name,int id);
+	public String setIssueBookDB(IssuedBook book);
+	
 }

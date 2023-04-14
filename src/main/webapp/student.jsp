@@ -5,14 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Output</title>
 </head>
-<frameset rows="20%,65%,15%" frameBorder="0">
-    <frame src="/Admin/header.jsp"/>
+<frameset rows="20%,80%" frameBorder="0">
+    <frame src="Admin/header.jsp"/>
 	<frameset cols="20%,80%">
-		<frame src="menu.jsp"/>
-		<frame src="welcome.jsp" name="body"/>
+		<frame src="Students/menu.jsp"/>
+		<frame src="Admin/welcome.jsp" name="body"/>
 	</frameset>
-	<frame src="footer.jsp"/>
+	<!-- <frame src="Admin/footer.jsp"/> -->
 </frameset>
 </html>
-
-

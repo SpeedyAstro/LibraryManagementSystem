@@ -8,10 +8,23 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String view;
+	private int id;
+	private String name;
+	private String username;
+	private String password;
+	private String phoneno;
+	private int uniqueId;
+	
+	public int getUniqueId() {
+		return uniqueId;
+	}
+	public void setUniqueId(int uniqueId) {
+		this.uniqueId = uniqueId;
+	}
 	@Override
 	public String toString() {
 		return "User [view=" + view + ", id=" + id + ", name=" + name + ", username=" + username + ", password="
-				+ password + ", phoneno=" + phoneno + "]";
+				+ password + ", phoneno=" + phoneno + ", uniqueId=" + uniqueId + "]";
 	}
 	public String getView() {
 		return view;
@@ -19,12 +32,6 @@ public class User implements Serializable {
 	public void setView(String view) {
 		this.view = view;
 	}
-	private int id;
-	private String name;
-	private String username;
-	private String password;
-	private String phoneno;
-	
 	public int getId() {
 		return id;
 	}
