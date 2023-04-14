@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import in.astro.bean.Book;
+import in.astro.bean.IssuedBook;
 import in.astro.dao.IUserDao;
 import in.astro.daofactory.UserDaoFactory;
 
@@ -106,6 +107,23 @@ public class AdminOps extends HttpServlet {
 			IUserDao userdao = UserDaoFactory.getUserDao();
 			PrintWriter out = response.getWriter();
 			String status = userdao.deletebook(bookname);
+			if(status.equals("success")) out.println("<h1 style='color:green; text-align:center;'>Deleted Successfull</h1>");
+			else out.println("<h1 style='color:red; text-align:center;'>Failed</h1>");
+		}
+//		if(request.getPathInfo().equals("/returnbook1")) {
+//			IUserDao userDao = UserDaoFactory.getUserDao();
+//			List<IssuedBook> issuedBook = userDao.fetchIssuedBook();
+//			request.setAttribute("books", issuedBook);
+//		}
+		if(request.getPathInfo().equals("/return")) {
+			System.out.println("testtt");
+			PrintWriter out = response.getWriter();
+			IUserDao userDao = UserDaoFactory.getUserDao();
+			String id = request.getParameter("id");
+			String bookname = request.getParameter("book");
+			System.out.println(id+""+bookname);
+			int userid = Integer.parseInt(id);
+			String status = userDao.returnbook(bookname, userid);
 			if(status.equals("success")) out.println("<h1 style='color:green; text-align:center;'>Deleted Successfull</h1>");
 			else out.println("<h1 style='color:red; text-align:center;'>Failed</h1>");
 		}

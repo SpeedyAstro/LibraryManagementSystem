@@ -17,5 +17,7 @@ public interface IUserDao {
 	public String deletebook(String name);
 	public boolean issueBook(String name,int id);
 	public String setIssueBookDB(IssuedBook book);
-	
+	public List<IssuedBook> fetchIssuedBook(int id);
+	public List<IssuedBook> fetchIssuedBook();
+	public String returnbook(String book_name,int id);
 }

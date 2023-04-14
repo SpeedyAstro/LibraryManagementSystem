@@ -62,6 +62,8 @@ a{
 				<li><a href="deletebook.jsp" target="body">DELETE BOOK</a></li>
 				<br><br>
 				<li><a href="profile.jsp" target="body">Profile</a></li>
+				<br><br>
+				<li><a href="returnbook.jsp" target="body">ISSUED BOOKS</a></li>
 			</ul>
 </h3>		
 </body>

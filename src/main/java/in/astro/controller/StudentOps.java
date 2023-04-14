@@ -3,6 +3,7 @@ package in.astro.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,12 +54,20 @@ public class StudentOps extends HttpServlet {
 				issuebook.setIssuedDate(new Date());
 				issuebook.setReturnDate(new Date(System.currentTimeMillis() + (15 * 24 * 60 * 60 * 1000))); 
 			    issuebook.setFine(0);
+			    System.out.println(issuebook.getReturnDate());
 			    String flag = userdao.setIssueBookDB(issuebook);
 			   if(flag.equals("success"))  out.println("<h1 style='color:green;text-align:center;'> Successfully Added to IssuedBookdb</h1>");
 			   else  out.println("<h1 style='color:red;text-align:center;'> Failed to add  IssuedBookdb</h1>");
 			}else {
-				out.println("<h1 style='color:red;text-align:center;'> Failed to Issue Book</h1>");
+				out.println("<h1 style='color:red;text-align:center;'> Failed to Issue Book [you MAXED OUT ISSUE BOOK LIMIT OR BOOK IS NOT AVAILABLE RIGHT NOW </h1>");
 			}
+		}
+		if(request.getPathInfo().equals("/fetchbook")) {
+			HttpSession session = request.getSession();
+		    User user = (User) session.getAttribute("user");
+			IUserDao userDao = UserDaoFactory.getUserDao();
+			List<IssuedBook> issuedBook = userDao.fetchIssuedBook(user.getUniqueId());
+			request.setAttribute("books", issuedBook);
 		}
 	}
 

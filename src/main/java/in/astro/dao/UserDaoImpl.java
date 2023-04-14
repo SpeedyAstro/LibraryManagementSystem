@@ -3,7 +3,6 @@ package in.astro.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -269,6 +268,76 @@ public class UserDaoImpl implements IUserDao {
 				int rowcount = statement.executeUpdate();
 				if(rowcount==1) return "success";
 			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "failure";
+	}
+	public List<IssuedBook> fetchIssuedBook(int id){
+		String query = "select user_id,book_name,issue_date,return_date,fine_amount from issuedbook where user_id=?"; 
+		try {
+			connection = JdbcUtil.getConnection();
+			List<IssuedBook> books = new ArrayList<IssuedBook>();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setInt(1, id);
+					resultset = statement.executeQuery();
+					while(resultset.next()) {
+						IssuedBook b = new IssuedBook();
+						b.setUserId(resultset.getInt(1));
+//						 System.out.println(resultset.getInt(1));
+						b.setBookname(resultset.getString(2));
+						b.setIssuedDate(resultset.getDate(3));
+						b.setReturnDate(resultset.getDate(4));
+						b.setFine(resultset.getInt(5));
+						books.add(b);
+					}
+					return books;
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public List<IssuedBook> fetchIssuedBook(){
+		String query = "select user_id,book_name,issue_date,return_date,fine_amount from issuedbook"; 
+		try {
+			connection = JdbcUtil.getConnection();
+			List<IssuedBook> books = new ArrayList<IssuedBook>();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					resultset = statement.executeQuery();
+					while(resultset.next()) {
+						IssuedBook b = new IssuedBook();
+						b.setUserId(resultset.getInt(1));
+//						 System.out.println(resultset.getInt(1));
+						b.setBookname(resultset.getString(2));
+						b.setIssuedDate(resultset.getDate(3));
+						b.setReturnDate(resultset.getDate(4));
+						b.setFine(resultset.getInt(5));
+						books.add(b);
+					}
+					return books;
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public String returnbook(String book_name,int id) {
+		String query = "delete from issuedbook where book_name=? and user_id=?";
+		try {
+			connection = JdbcUtil.getConnection();
+			if(connection!=null)
+				statement = connection.prepareStatement(query);
+				if(statement!=null) {
+					statement.setString(1, book_name);
+					statement.setInt(2, id);
+					int count = statement.executeUpdate();
+					if(count==1) return "success";
+				}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

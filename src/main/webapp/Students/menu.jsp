@@ -57,6 +57,8 @@ a{
 				<li><a href="issuebook.jsp" target="body">Issue BOOK</a></li>
 				<br><br>
 				<li><a href="profile.jsp" target="body">Profile</a></li>
+				<br><br>
+				<li><a href="issuedbooks.jsp" target="body">Issued Books</a></li>
 			</ul>
 </h3>		
 </body>
