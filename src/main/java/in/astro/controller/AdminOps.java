@@ -49,7 +49,6 @@ public class AdminOps extends HttpServlet {
 		if(request.getPathInfo().equals("/addbook")) {
 			PrintWriter out = response.getWriter();
 			IUserDao userdao = UserDaoFactory.getUserDao();
-			out.println("<h1>hello sit down</h1>");
 			Part filePart = request.getPart("image");
 			if (filePart != null) {
 				System.out.println("file part not null");
@@ -124,7 +123,7 @@ public class AdminOps extends HttpServlet {
 			System.out.println(id+""+bookname);
 			int userid = Integer.parseInt(id);
 			String status = userDao.returnbook(bookname, userid);
-			if(status.equals("success")) out.println("<h1 style='color:green; text-align:center;'>Deleted Successfull</h1>");
+			if(status.equals("success")) out.println("<h1 style='color:green; text-align:center;'>Successfull</h1>");
 			else out.println("<h1 style='color:red; text-align:center;'>Failed</h1>");
 		}
 	}
